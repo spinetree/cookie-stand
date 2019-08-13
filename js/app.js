@@ -2,6 +2,7 @@
 
 // console.log('js loading');
 
+// the stores 
 var store1 = {
     storeId: 1,
     storeName: '1st and Pike',
@@ -47,14 +48,11 @@ var store5 = {
     hourlySales: []
 };
 
+// hard code times for now
 // do this programattically later if time
-// function niceTime() {
-    // for (var i=0; i < times.length; i++;) {
-
-    // }
-// }
-
 var times = ['6 a.m.','7 a.m.','8 a.m.','9 a.m.','10 a.m.','11 a.m.','12 p.m.', '1 p.m.','2 p.m.','3 p.m.','4 p.m.','5 p.m.','6 p.m.','7 p.m.','8 p.m.'];
+
+// generate the hourly projections and insert them in each store object as an array
 
 function projHourly(store) {
 
@@ -80,6 +78,22 @@ function listHourly(store) {
     }
 };
 
+// programattically make the store h3 and ul
+
+function makeStore(storeId, storeName, data) {
+    var salestable = document.getElementById("sales-table");
+    
+    var storeh3 = document.createElement('h3');
+    storeh3.appendChild(document.createTextNode(storeName));
+    salestable.appendChild(storeh3);
+
+    var storeUl = document.createElement('ul');
+    storeUl.setAttribute('id', storeId );
+    // storeUl.appendChild(document.createTextNode(data));
+    salestable.appendChild(storeUl);
+}
+
+// populate the store with the list data
 
 function addToList(target, data) {
     var ul = document.getElementById(target);
@@ -88,13 +102,6 @@ function addToList(target, data) {
     ul.appendChild(li);
 }
 
-function listStore(store, data) {
-    var salestable = document.getElementById("sales-table");
-    var storeUl = document.createElement('ul');
-    storeUl.setAttribute('id', store );
-    storeUl.appendChild(document.createTextNode(data));
-    salestable.appendChild(storeUl);
-}
 
 // for each store 
 // run project 
@@ -104,7 +111,9 @@ function listStore(store, data) {
 // make a list item for each
 // append that list item to the ul
 
-// separate these functions out into a global function and not an object method.
+
+
+
 
 // generate random number customers per hour betwen these then
 // calculate projected cookees sold each hour between 6a.m. and 8pm
