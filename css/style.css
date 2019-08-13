@@ -35,8 +35,6 @@ p {
     margin-top: 16px;
 }
 
-ul {}
-
 ol {
     list-style: lower-roman;
 }
@@ -47,14 +45,14 @@ li {
     margin: 16px 0 16px 20px;
 }
 
-ul li:before {
+/* ul li:before {
     font-family: "Font Awesome 5 Pro";
     content: '\f06d';
     margin: 0 5px 0 -14px;
     color: #666;
     font-size: 12px;
     font-weight: 600;
-}
+} */
 
 /* layout */
 
@@ -93,19 +91,19 @@ footer {
 }
 
 #sales-table {
-    margin-top:48px;
+    margin-top: 48px;
 }
 
-#sales-table > h3 {
-    text-align:center;
+#sales-table>h3 {
+    text-align: center;
 }
 
-#sales-table > div {
-    padding:0 20px;
-    float:left;
+#sales-table>div {
+    padding: 0 20px;
+    float: left;
 }
 
 li.total {
-    font-weight:600;
-    list-style:none;
+    font-weight: 600;
+    list-style: none;
 }

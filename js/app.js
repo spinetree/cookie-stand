@@ -88,6 +88,16 @@ function projSales(store) {
 
 }
 
+// do all the sales projections and make them part of each store
+
+function initialize() {
+
+    for (var i = 0; i < stores.length; i++) {
+        projSales(stores[i]);
+    }
+};
+
+
 // spit out list items from what's in the store's hourlySales array
 
 function listHourly(store) {
@@ -98,14 +108,7 @@ function listHourly(store) {
 };
 
 
-function initialize() {
-
-    for (var i = 0; i < stores.length; i++) {
-        projSales(stores[i]);
-    }
-};
-
-// make the store h3 and ul
+// make the store h3 and ul and lis
 
 function renderStores() {
 
@@ -145,15 +148,6 @@ function renderStores() {
 
 initialize();
 renderStores();
-
-
-// for each store 
-// run project (populate stores with projection arrays) 
-// list store name
-// create a ul
-// loop through hourly projections  
-// make a list item for each
-// append that list item to the ul
 
 
 
