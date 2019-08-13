@@ -48,6 +48,26 @@ var store5 = {
     hourlySales: []
 };
 
+function Store(name, minCust, maxCust, cookiesPerCust){
+    this.name = name;
+    this.minCust = minCust;
+    this.maxCust = maxCust;
+    this.cookiesPerCust = cookiesPerCust;
+    this.hourlySales = [];
+    Store.storeList.push(this.name);
+    this.projectSales();  
+  }
+  
+  Store.storeList = []; 
+  
+  Store.prototype.projectSales = function(){
+    this.message = 'this is a message';
+    console.log('projecting sales');
+  };
+  
+  var newStore = new Store('newStore', 20, 40, 3.4);
+  
+
 var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
 
 //gonna wipe this out
