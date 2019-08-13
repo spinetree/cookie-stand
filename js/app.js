@@ -80,25 +80,26 @@ function listHourly(store) {
 
 // programattically make the store h3 and ul
 
-function makeStore(storeId, storeName, data) {
-    var salestable = document.getElementById("sales-table");
-    
-    var storeh3 = document.createElement('h3');
-    storeh3.appendChild(document.createTextNode(storeName));
-    salestable.appendChild(storeh3);
+function makeStore(storeId, storeName) {
 
+    var salestable = document.getElementById("sales-table");
+    var storeh3 = document.createElement('h3');
+    storeh3.textContent = storeName;
+    salestable.appendChild(storeh3);
+    
     var storeUl = document.createElement('ul');
     storeUl.setAttribute('id', storeId );
-    // storeUl.appendChild(document.createTextNode(data));
+    storeUl.appendChild(document.createTextNode('testdata'));
     salestable.appendChild(storeUl);
 }
 
 // populate the store with the list data
 
-function addToList(target, data) {
-    var ul = document.getElementById(target);
+function addToList(storeId) {
+    var targetUl = 'store-' + storeId;  
+    var ul = document.getElementById(targetUl);
     var li = document.createElement('li');
-    li.appendChild(document.createTextNode(data));
+    li.appendChild(document.createTextNode('some placeholder data'));
     ul.appendChild(li);
 }
 
