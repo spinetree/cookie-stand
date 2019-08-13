@@ -52,6 +52,9 @@ var store5 = {
 // do this programattically later if time
 var times = ['6 a.m.','7 a.m.','8 a.m.','9 a.m.','10 a.m.','11 a.m.','12 p.m.', '1 p.m.','2 p.m.','3 p.m.','4 p.m.','5 p.m.','6 p.m.','7 p.m.','8 p.m.'];
 
+// hard code store list for now
+var stores = [store1,store2,store3,store4,store5];
+
 // generate the hourly projections and insert them in each store object as an array
 
 function projHourly(store) {
@@ -81,19 +84,19 @@ function listHourly(store) {
 
 // make the store h3 and ul
 
-function makeStore(storeId, storeName) {
+function renderStore(storeId, storeName) {
 
     var salestable = document.getElementById('salestable');
     // console.log(salestable);
     var storeh3 = document.createElement('h3');
     storeh3.textContent = storeName;
-    // console.log(storeName);
+    console.log(storeName);
     salestable.appendChild(storeh3);
     
-    // var storeUl = document.createElement('ul');
-    // storeUl.setAttribute('id', storeId );
-    // storeUl.appendChild(document.createTextNode('testdata'));
-    // salestable.appendChild(storeUl);
+    var storeUl = document.createElement('ul');
+    storeUl.setAttribute('id', storeId );
+    storeUl.appendChild(document.createTextNode('testdata'));
+    salestable.appendChild(storeUl);
 }
 
 // populate the store ul with the list data
@@ -109,12 +112,18 @@ function addToList(storeId) {
 function initialize() {
     
 for (var i = 0; i < stores.length; i++) {
-    
+    projHourly(stores[i]);
+    console.log('initialized');
 }
 
 };
 
 function render() {
+
+    for (var i = 0; i < stores.length; i++) {
+        projHourly(stores[i]);
+        renderStore(stores[i].storeId, stores[i].storeName);
+    }
 
 };
 
