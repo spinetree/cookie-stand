@@ -70,6 +70,7 @@ function projHourly(store) {
     store.hourlySales = hourlySales;
 }
 
+// spit out list items from what's in the store's hourlySales array
 
 function listHourly(store) {
     for (var i = 0; i < times.length; i++) {
@@ -78,22 +79,24 @@ function listHourly(store) {
     }
 };
 
-// programattically make the store h3 and ul
+// make the store h3 and ul
 
 function makeStore(storeId, storeName) {
 
-    var salestable = document.getElementById("sales-table");
+    var salestable = document.getElementById('salestable');
+    // console.log(salestable);
     var storeh3 = document.createElement('h3');
     storeh3.textContent = storeName;
+    // console.log(storeName);
     salestable.appendChild(storeh3);
     
-    var storeUl = document.createElement('ul');
-    storeUl.setAttribute('id', storeId );
-    storeUl.appendChild(document.createTextNode('testdata'));
-    salestable.appendChild(storeUl);
+    // var storeUl = document.createElement('ul');
+    // storeUl.setAttribute('id', storeId );
+    // storeUl.appendChild(document.createTextNode('testdata'));
+    // salestable.appendChild(storeUl);
 }
 
-// populate the store with the list data
+// populate the store ul with the list data
 
 function addToList(storeId) {
     var targetUl = 'store-' + storeId;  
@@ -103,9 +106,22 @@ function addToList(storeId) {
     ul.appendChild(li);
 }
 
+function initialize() {
+    
+for (var i = 0; i < stores.length; i++) {
+    
+}
+
+};
+
+function render() {
+
+};
+
+// will need to do a for loop in another for loop to make this work - loop through locations then loop through again, grabbing an hour from the hours glonal array and the sales number from the store object's projected sales array
 
 // for each store 
-// run project 
+// run project (populate stores with projection arrays) 
 // list store name
 // create a ul
 // loop through hourly projections  
