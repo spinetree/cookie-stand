@@ -100,37 +100,23 @@ function renderStores() {
     
     for (var i = 0; i < stores.length; i++) {
 
-        var storeDiv = document.createElement('div');
-        storeDiv.setAttribute('id', 'store-' + stores[i].storeId);
-        salestable.appendChild(storeDiv);
-        
-        var storeClass = 'store-' + stores[i].storeId;
-        // console.log(storeClass);
-        
-        var storeDiv = document.getElementById(storeClass);
-        // console.log(storeDiv);
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode('some placeholder data'));
+
+        var storeUl = document.createElement('ul');
         
         var storeh3 = document.createElement('h3');
         storeh3.textContent = stores[i].storeName;
+
+        var storeDiv = document.createElement('div');
+        storeDiv.setAttribute('id', 'store-' + stores[i].storeId);
+        
+        //let's append things together while they're still easy variables in the ether instead of after they've become DOM objects ffs
+        storeUl.appendChild(li);        
         storeDiv.appendChild(storeh3);
-
-        var storeUl = document.createElement('ul');
-        storeUl.appendChild(document.createTextNode('testdata'));
         storeDiv.appendChild(storeUl);
-
-        var ul = document.getElementById(storeClass);
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode('some placeholder data'));
-        ul.appendChild(li);
-
-        // console.log(stores.length);
-        // console.log(stores[index].projHourly.length);
-
-        // for (var x = 0; x < stores[index].projHourly.length; x++) {
-        //     console.log('firing');
-        //     // console.log(store[i].projHourly[i]);
-        // }
-
+        salestable.appendChild(storeDiv);
+        
     }
 
 }
