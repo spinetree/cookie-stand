@@ -2,7 +2,7 @@
 
 // console.log('js loading');
 
-// the stores 
+// write a constructor function to do these programattically
 var store1 = {
     storeId: 1,
     storeName: '1st and Pike',
@@ -48,15 +48,12 @@ var store5 = {
     hourlySales: []
 };
 
-// hard code times for now
-// do this programattically later if time
 var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
 
-// hard code store list for now
+//gonna wipe this out
 var stores = [store1, store2, store3, store4, store5];
 
-// generate the hourly projections and insert them in each store object as an array
-
+//refactor this so each store calls this and projects its own damn sales and totals it out
 function projSales(store) {
 
     var min = store.minCust;
@@ -84,12 +81,10 @@ function projSales(store) {
     };
 
     store.dailySales = dailySales(hourlySales);
-    // console.log(store.dailySales)
 
 }
 
-// do all the sales projections and make them part of each store
-
+// git rid of this altogether
 function initialize() {
 
     for (var i = 0; i < stores.length; i++) {
@@ -97,19 +92,11 @@ function initialize() {
     }
 };
 
+// function create Header
 
-// spit out list items from what's in the store's hourlySales array
+// function create footer
 
-function listHourly(store) {
-    for (var i = 0; i < times.length; i++) {
-        var listItem = (times[i] + ' : ' + store.hourlySales[i]);
-        return listItem;
-    }
-};
-
-
-// make the store h3 and ul and lis
-
+//simplify this so it runs on a per-store basis and renders one store at a time then gets called by the store ()
 function renderStores() {
 
     var salestable = document.getElementById('sales-table');
@@ -149,5 +136,10 @@ function renderStores() {
 initialize();
 renderStores();
 
-
-
+// overall process
+// constructor function makes a store
+//replace stores objects with a bunch built via constructor
+// store predicts its daily sales 
+// store predicts its total
+// store adds itself to the list of stores
+// function calls list of stores in the proto and each  
