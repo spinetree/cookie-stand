@@ -97,36 +97,37 @@ function listHourly(store) {
 function renderStores() {
 
     var salestable = document.getElementById('test');
-    
+
     for (var i = 0; i < stores.length; i++) {
-
-        var li = document.createElement('li');
-        li.appendChild(document.createTextNode('some placeholder data'));
-
+        
+        var hourlySales = stores[i].hourlySales;
+        
         var storeUl = document.createElement('ul');
         
+        for (var x = 0; x < hourlySales.length; x++) {    
+            var li = document.createElement('li');
+            li.textContent = ('some placeholder data: ' + x);
+            storeUl.appendChild(li);
+        };
+
         var storeh3 = document.createElement('h3');
         storeh3.textContent = stores[i].storeName;
 
         var storeDiv = document.createElement('div');
         storeDiv.setAttribute('id', 'store-' + stores[i].storeId);
-        
+
         //let's append things together while they're still easy variables in the ether instead of after they've become DOM objects ffs
-        storeUl.appendChild(li);        
         storeDiv.appendChild(storeh3);
         storeDiv.appendChild(storeUl);
         salestable.appendChild(storeDiv);
-        
+
     }
 
 }
 
 
 // populate the store ul with the list data
-
-function addToList(storeId) {
-
-}
+function addToList(storeId) {}
 
 
 // function render() {
