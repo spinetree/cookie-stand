@@ -62,11 +62,15 @@ function Store(name, minCust, maxCust, cookiesPerCust){
   
   Store.prototype.projectSales = function(){
     this.message = 'this is a message';
-    console.log('projecting sales');
   };
   
-  var newStore = new Store('newStore', 20, 40, 3.4);
+  var firstPike = new Store('1st and Pike', 23,  65, 2.3); 
+  var SeaTac = new Store('SeaTac Airport', 3,  24, 2.3); 
+  var seattleCenter = new Store('SeattleCenter', 11,  38, 3.7); 
+  var capitolHill = new Store('Capitol Hill', 20,  38, 2.3); 
+  var Alki = new Store('Alki', 2,  16, 4.6); 
   
+  console.log(Store.storeList);
 
 var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
 
