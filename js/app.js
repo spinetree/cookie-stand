@@ -50,10 +50,10 @@ var store5 = {
 
 // hard code times for now
 // do this programattically later if time
-var times = ['6 a.m.','7 a.m.','8 a.m.','9 a.m.','10 a.m.','11 a.m.','12 p.m.', '1 p.m.','2 p.m.','3 p.m.','4 p.m.','5 p.m.','6 p.m.','7 p.m.','8 p.m.'];
+var times = ['6 a.m.', '7 a.m.', '8 a.m.', '9 a.m.', '10 a.m.', '11 a.m.', '12 p.m.', '1 p.m.', '2 p.m.', '3 p.m.', '4 p.m.', '5 p.m.', '6 p.m.', '7 p.m.', '8 p.m.'];
 
 // hard code store list for now
-var stores = [store1,store2,store3,store4,store5];
+var stores = [store1, store2, store3, store4, store5];
 
 // generate the hourly projections and insert them in each store object as an array
 
@@ -63,6 +63,7 @@ function projHourly(store) {
     var max = store.maxCust;
     var avg = store.cookiesPerCust;
     var hourlySales = [];
+
     function customers(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
     };
@@ -72,6 +73,15 @@ function projHourly(store) {
     }
     store.hourlySales = hourlySales;
 }
+
+function initialize() {
+
+    for (var i = 0; i < stores.length; i++) {
+        projHourly(stores[i]);
+        console.log('initialized');
+    }
+};
+
 
 // spit out list items from what's in the store's hourlySales array
 
@@ -84,50 +94,76 @@ function listHourly(store) {
 
 // make the store h3 and ul
 
-function renderStore(storeId, storeName) {
+function renderStores() {
 
-    var salestable = document.getElementById('salestable');
-    // console.log(salestable);
-    var storeh3 = document.createElement('h3');
-    storeh3.textContent = storeName;
-    console.log(storeName);
-    salestable.appendChild(storeh3);
+    var salestable = document.getElementById('test');
     
-    var storeUl = document.createElement('ul');
-    storeUl.setAttribute('id', storeId );
-    storeUl.appendChild(document.createTextNode('testdata'));
-    salestable.appendChild(storeUl);
+    for (var i = 0; i < stores.length; i++) {
+
+        var storeDiv = document.createElement('div');
+        storeDiv.setAttribute('id', 'store-' + stores[i].storeId);
+        salestable.appendChild(storeDiv);
+        
+        var storeClass = 'store-' + stores[i].storeId;
+        // console.log(storeClass);
+        
+        var storeDiv = document.getElementById(storeClass);
+        // console.log(storeDiv);
+        
+        var storeh3 = document.createElement('h3');
+        storeh3.textContent = stores[i].storeName;
+        storeDiv.appendChild(storeh3);
+
+        var storeUl = document.createElement('ul');
+        storeUl.appendChild(document.createTextNode('testdata'));
+        storeDiv.appendChild(storeUl);
+
+        var ul = document.getElementById(storeClass);
+        var li = document.createElement('li');
+        li.appendChild(document.createTextNode('some placeholder data'));
+        ul.appendChild(li);
+
+        // console.log(stores.length);
+        // console.log(stores[index].projHourly.length);
+
+        // for (var x = 0; x < stores[index].projHourly.length; x++) {
+        //     console.log('firing');
+        //     // console.log(store[i].projHourly[i]);
+        // }
+
+    }
+
 }
+
 
 // populate the store ul with the list data
 
 function addToList(storeId) {
-    var targetUl = 'store-' + storeId;  
-    var ul = document.getElementById(targetUl);
-    var li = document.createElement('li');
-    li.appendChild(document.createTextNode('some placeholder data'));
-    ul.appendChild(li);
+
 }
 
-function initialize() {
-    
-for (var i = 0; i < stores.length; i++) {
-    projHourly(stores[i]);
-    console.log('initialized');
-}
 
-};
+// function render() {
 
-function render() {
-
-    for (var i = 0; i < stores.length; i++) {
-        projHourly(stores[i]);
-        renderStore(stores[i].storeId, stores[i].storeName);
-    }
-
-};
+//     for (var i = 0; i < stores.length; i++) {
+//         projHourly(stores[i]);
+//         // console.log(i, stores[i].storeId, stores[i].storeName);
+//         renderStore(i, stores[i].storeId, stores[i].storeName);
+//     }
+// };
 
 // will need to do a for loop in another for loop to make this work - loop through locations then loop through again, grabbing an hour from the hours glonal array and the sales number from the store object's projected sales array
+
+
+// for each (store in list) {x
+// spit out an h3
+// spit out an empty ul
+// for each (item in projHourly)
+//    { spit out an li
+//      append to the ul
+//      }
+// }
+
 
 // for each store 
 // run project (populate stores with projection arrays) 
