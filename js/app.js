@@ -62,29 +62,47 @@ function projHourly(store) {
     var max = store.maxCust;
     var avg = store.cookiesPerCust;
     var hourlySales = [];
-
     function customers(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
     };
-
     for (var i = 0; i < times.length; i++) {
         var sales = Math.floor(customers(min, max) * avg);
         hourlySales.push(sales);
     }
-
     store.hourlySales = hourlySales;
 }
 
 
 function listHourly(store) {
-
     for (var i = 0; i < times.length; i++) {
         var listItem = (times[i] + ' : ' + store.hourlySales[i]);
-        console.log(listItem);
+        return listItem;
     }
 };
 
 
+function addToList(target, data) {
+    var ul = document.getElementById(target);
+    var li = document.createElement('li');
+    li.appendChild(document.createTextNode(data));
+    ul.appendChild(li);
+}
+
+function listStore(store, data) {
+    var salestable = document.getElementById("sales-table");
+    var storeUl = document.createElement('ul');
+    storeUl.setAttribute('id', store );
+    storeUl.appendChild(document.createTextNode(data));
+    salestable.appendChild(storeUl);
+}
+
+// for each store 
+// run project 
+// list store name
+// create a ul
+// loop through hourly projections  
+// make a list item for each
+// append that list item to the ul
 
 // separate these functions out into a global function and not an object method.
 
