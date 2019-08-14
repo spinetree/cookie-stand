@@ -53,6 +53,7 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
             rowArray.push(hourlySales[i]);
         };
         rowArray.push(dailyTotal);
+
         return rowArray;
     }
 }
@@ -67,14 +68,20 @@ var Alki = new Store('Alki', 2, 16, 4.6);
 
 console.log(Store.storeList);
 
-// problems here. Can fire off Store.storeList[i].renderRow from console but can't get to run from in here.
+
 function renderStores() {
+    var salesTable = document.getElementById('sales-table');
+
     for (var i = 0; i < Store.storeList.length; i++) {
-        var storeTemp = Store.storeList[i];
-        console.log(Store.storeList[i]);
-        storeTemp.renderRow();
-            // Store.storeList[i].renderRow();
-    }
+        var rowContent = Store.storeList[i].renderRow();
+        var row = document.createElement('tr');
+        for (var x = 0; x < rowContent.length; x++) {
+            var td = document.createElement('td');
+            td.innerHTML = rowContent[x];
+            row.appendChild(td);
+        };
+        salesTable.appendChild(row);
+    };
 }
 
 // function create Header
@@ -86,55 +93,8 @@ function renderStores() {
 // fill that with the first entry from hourlySales and move to the next td
 // when you hit (number) spit out total 
 
-// a tr array : [storename]
 
-// function create footer
-
-
-
-// statt at the first tr 
-//for each store
-//
-
-//simplify this so it runs on a per-store basis and renders one store at a time then gets called by the store ()
-function renderStoresOld() {
-
-    var salestable = document.getElementById('sales-table');
-
-    for (var i = 0; i < stores.length; i++) {
-
-        var hourlySales = stores[i].hourlySales;
-
-        var storeUl = document.createElement('ul');
-
-        for (var x = 0; x < hourlySales.length; x++) {
-            var li = document.createElement('li');
-            li.textContent = (times[x] + ': ' + hourlySales[x]);
-            storeUl.appendChild(li);
-        };
-
-        var totalLi = document.createElement('li');
-        totalLi.textContent = ('Total: ' + stores[i].dailySales);
-        totalLi.setAttribute('class', 'total');
-        storeUl.appendChild(totalLi);
-
-        var storeh3 = document.createElement('h3');
-        storeh3.textContent = stores[i].storeName;
-
-        var storeDiv = document.createElement('div');
-        storeDiv.setAttribute('id', 'store-' + stores[i].storeId);
-
-        //let's append things together while they're still easy variables instead of after they've become DOM objects ffs
-        storeDiv.appendChild(storeh3);
-        storeDiv.appendChild(storeUl);
-        salestable.appendChild(storeDiv);
-
-    }
-
-}
-
-// initialize();
-// renderStores();
+renderStores();
 
 // overall process
 // constructor function makes a store
