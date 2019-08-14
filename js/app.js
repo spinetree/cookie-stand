@@ -2,6 +2,8 @@
 
 // console.log('js loading');
 
+var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
+
 // write a constructor function to do these programattically
 var store1 = {
     storeId: 1,
@@ -61,7 +63,22 @@ function Store(name, minCust, maxCust, cookiesPerCust){
   Store.storeList = []; 
   
   Store.prototype.projectSales = function(){
+    
     this.message = 'this is a message';
+
+    var min = this.minCust;
+    var max = this.maxCust;
+    var avg = this.cookiesPerCust;
+    
+    function customers(min, max) {
+        return Math.floor(Math.random() * (max - min) + min);
+    };
+    
+    for (var i = 0; i < times.length; i++) {
+        var sales = Math.floor(customers(min, max) * avg);
+        this.hourlySales.push(sales);
+    };
+
   };
   
   var firstPike = new Store('1st and Pike', 23,  65, 2.3); 
@@ -72,10 +89,10 @@ function Store(name, minCust, maxCust, cookiesPerCust){
   
   console.log(Store.storeList);
 
-var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
 
 //gonna wipe this out
 var stores = [store1, store2, store3, store4, store5];
+
 
 //refactor this so each store calls this and projects its own damn sales and totals it out
 function projSales(store) {
