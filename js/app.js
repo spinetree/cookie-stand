@@ -11,7 +11,7 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
     this.cookiesPerCust = cookiesPerCust;
     this.hourlySales = [];
     Store.storeList.push(this);
-    
+
     this.projectSales = function () {
 
         var min = this.minCust;
@@ -28,18 +28,33 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
         };
     };
 
-    this.totalSales = function() {
-    
+    this.totalSales = function () {
+
         var dailyTotal = 0;
         for (var x = 0; x < this.hourlySales.length; x++) {
             dailyTotal += this.hourlySales[x];
         };
         this.dailyTotal = dailyTotal;
-    
+
     };
 
     this.projectSales();
     this.totalSales();
+
+    this.renderRow = function() {
+
+        var rowArray = [];
+        var name = this.name;
+        var hourlySales = this.hourlySales;
+        var dailyTotal = this.dailyTotal;
+
+        rowArray.unshift(name);
+        for (var i = 0; i < hourlySales.length; i++) {
+            rowArray.push(hourlySales[i]);
+        };
+        rowArray.push(dailyTotal);
+        return rowArray;
+    }
 }
 
 Store.storeList = [];
@@ -52,13 +67,37 @@ var Alki = new Store('Alki', 2, 16, 4.6);
 
 console.log(Store.storeList);
 
+// problems here. Can fire off Store.storeList[i].renderRow from console but can't get to run from in here.
+function renderStores() {
+    for (var i = 0; i < Store.storeList.length; i++) {
+        var storeTemp = Store.storeList[i];
+        console.log(Store.storeList[i]);
+        storeTemp.renderRow();
+            // Store.storeList[i].renderRow();
+    }
+}
 
 // function create Header
+// make a table > thead > tr > 16 th 
+// skip one th and fill with times
+// for each store
+// go to the table row based on the index of that store in the storeList
+// move to the second td in that table
+// fill that with the first entry from hourlySales and move to the next td
+// when you hit (number) spit out total 
+
+// a tr array : [storename]
 
 // function create footer
 
+
+
+// statt at the first tr 
+//for each store
+//
+
 //simplify this so it runs on a per-store basis and renders one store at a time then gets called by the store ()
-function renderStores() {
+function renderStoresOld() {
 
     var salestable = document.getElementById('sales-table');
 
