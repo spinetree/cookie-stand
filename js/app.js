@@ -13,49 +13,49 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
     this.cookiesPerCust = cookiesPerCust;
     this.hourlySales = [];
     Store.storeList.push(this);
-    
+
     this.projectSales = function () {
-        
+
         var min = this.minCust;
         var max = this.maxCust;
         var avg = this.cookiesPerCust;
-        
+
         function customers(min, max) {
             return Math.floor(Math.random() * (max - min) + min);
         };
-        
+
         for (var i = 0; i < times.length; i++) {
             var sales = Math.floor(customers(min, max) * avg);
             this.hourlySales.push(sales);
         };
     };
-    
+
     this.totalSales = function () {
-        
+
         var dailyTotal = 0;
         for (var x = 0; x < this.hourlySales.length; x++) {
             dailyTotal += this.hourlySales[x];
         };
         this.dailyTotal = dailyTotal;
-        
+
     };
-    
+
     this.projectSales();
     this.totalSales();
-    
+
     this.renderRow = function () {
-        
+
         var rowArray = [];
         var name = this.name;
         var hourlySales = this.hourlySales;
         var dailyTotal = this.dailyTotal;
-        
+
         rowArray.unshift(name);
         for (var i = 0; i < hourlySales.length; i++) {
             rowArray.push(hourlySales[i]);
         };
         rowArray.push(dailyTotal);
-        
+
         return rowArray;
     };
 };
@@ -85,18 +85,18 @@ function renderHeader() {
     header.appendChild(headerRow);
     var headerCell = document.createElement('th');
     header.appendChild(headerCell);
-    
-    for(var i=0; i <= times.length; i++) {
+
+    for (var i = 0; i <= times.length; i++) {
         var headerCell = document.createElement('th');
         headerCell.innerText = times[i];
         header.appendChild(headerCell);
-        };
-    
+    };
+
     var lastHeaderCell = document.createElement('th');
     headerCell.innerText = 'Daily Total';
     header.appendChild(headerCell);
 
-    salesTable.appendChild(header);    
+    salesTable.appendChild(header);
 };
 
 function renderStores() {
@@ -114,7 +114,7 @@ function renderStores() {
     };
     salesTable.appendChild(tbody);
 
-    var footer = document.createElement('tfoot');    
+    var footer = document.createElement('tfoot');
     var totalsRow = document.createElement('tr');
     //one blank td for the store names
     var dailyTotalLabel = document.createElement('td');
