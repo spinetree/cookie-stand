@@ -60,6 +60,8 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
     };
 };
 
+// compute just the hourly total for the footer
+
 var hourlyTotals = [];
 
 function getHourlyTotals() {
@@ -72,12 +74,15 @@ function getHourlyTotals() {
     };
 };
 
+// generate stores 
+
 var firstPike = new Store('1st and Pike', 23, 65, 2.3);
 var SeaTac = new Store('SeaTac Airport', 3, 24, 2.3);
 var seattleCenter = new Store('SeattleCenter', 11, 38, 3.7);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var Alki = new Store('Alki', 2, 16, 4.6);
 
+ // render fooken header from times list (up top)
 
 function renderHeader() {
     var header = document.createElement('thead');
@@ -99,6 +104,8 @@ function renderHeader() {
     salesTable.appendChild(header);
 };
 
+// 
+
 function renderStores() {
     var tbody = document.createElement('tbody');
 
@@ -113,6 +120,9 @@ function renderStores() {
         tbody.appendChild(row);
     };
     salesTable.appendChild(tbody);
+};
+
+function renderFooter() {
 
     var footer = document.createElement('tfoot');
     var totalsRow = document.createElement('tr');
@@ -128,11 +138,13 @@ function renderStores() {
     };
     footer.appendChild(totalsRow);
     salesTable.append(footer);
+
 };
 
 renderHeader();
 getHourlyTotals();
 renderStores();
+renderFooter();
 
 // function create Header
 // make a table > thead > tr > 16 th 
