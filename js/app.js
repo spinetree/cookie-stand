@@ -59,6 +59,18 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
     };
 };
 
+var hourlyTotals = [];
+
+function getHourlyTotals() {
+    for (var i = 0; i < times.length; i++) {
+        var sum = 0;
+        for (var x = 0; x < Store.storeList.length; x++) {
+            sum += Store.storeList[x].hourlySales[i];
+        };
+        hourlyTotals.push(sum);
+    };
+}
+
 var firstPike = new Store('1st and Pike', 23, 65, 2.3);
 var SeaTac = new Store('SeaTac Airport', 3, 24, 2.3);
 var seattleCenter = new Store('SeattleCenter', 11, 38, 3.7);
@@ -78,21 +90,25 @@ function renderStores() {
         };
         salesTable.appendChild(row);
     };
-};
 
-var hourlyTotals = [];
+    //render the totals
+    var totalsRow = document.createElement('tr');
+    //one blank td for the store names
+    var dailyTotalLabel = document.createElement('td');
+    dailyTotalLabel.innerHTML = 'Hourly Total';
+    totalsRow.appendChild(dailyTotalLabel);
 
-function getHourlyTotals() {
-    for (var i = 0; i < times.length; i++) {
-        var sum = 0;
-        for (var x = 0; x < Store.storeList.length; x++) {
-            sum += Store.storeList[x].hourlySales[i];
-        };
-        hourlyTotals.push(sum);
+
+    for (var x = 0; x < hourlyTotals.length; x++) {
+        var totalCell = document.createElement('td');
+        totalCell.innerHTML = hourlyTotals[x];
+        totalsRow.appendChild(totalCell);
     };
+    console.log(totalsRow);
+    salesTable.appendChild(totalsRow);
 };
 
-
+getHourlyTotals();
 renderStores();
 
 // function create Header
