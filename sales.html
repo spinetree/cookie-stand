@@ -14,10 +14,34 @@
     </header>
 
     <main>
-        <h2>Sales</h2>
-        <p>Here are some sales projections:</p>
-        <table id="sales-table">
-        </table>
+        <section>
+            <h2>Sales</h2>
+            <p>Here are some sales projections:</p>
+            <table id="sales-table">
+            </table>
+        </section>
+
+        <section>
+            <h2>Add a store:</h2>
+            <form id="add-store">
+                <fieldset>
+                    <label for="name">store name:</label>
+                    <input type="text" name="name" placeholder="store name" minlength="5" required>
+
+                    <!-- <label for="min-cust">minimum customers/hour</label>
+                    <input type="text" name="min-cust" placeholder="min" minlength="1" required>
+
+                    <label for="max-cust">maximum customers/hour</label>
+                    <input type="text" name="max-cust" placeholder="min" minlength="1" required>
+
+                    <label for="avg-cust">avg customers/hour</label>
+                    <input type="text" name="avg-cust" placeholder="min" minlength="1" required> -->
+                </fieldset>
+
+                <button type="submit" id="submit-btn">add store</button>
+            </form>
+        </section>
+ 
     </main>
 
     <footer>
