@@ -108,21 +108,37 @@ li.total {
     list-style: none;
 }
 
-table {margin:32px 0;}
+table {
+    margin: 32px 0;
+    font-size:14px;
+}
 
 thead {
-    background:#888;
-    font-weight:200;
+    background: #888;
+    font-weight: 200;
 }
 
 tbody {
-    background:#dedede;
-    color:#555;
+    background: #dedede;
+    color: #555;
 }
 
-th,td {padding:8px; text-align:center;}
+th,
+td {
+    padding: 16px;
+    text-align: center;
+}
 
 th:first-of-type {
     width: 120px;
-display:inline-block;
- }
+    display: inline-block;
+}
+
+th {font-weight:400;}
+
+td:first-of-type, 
+td:last-of-type,
+tfoot td
+ {
+    font-weight: 600;
+}
