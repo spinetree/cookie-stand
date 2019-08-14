@@ -4,94 +4,53 @@
 
 var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
 
-// write a constructor function to do these programattically
-var store1 = {
-    storeId: 1,
-    storeName: '1st and Pike',
-    minCust: 23,
-    maxCust: 65,
-    cookiesPerCust: 6.3,
-    hourlySales: []
-};
-
-var store2 = {
-    storeId: 2,
-    storeName: 'SeaTac Airport',
-    minCust: 3,
-    maxCust: 24,
-    cookiesPerCust: 1.2,
-    hourlySales: []
-};
-
-var store3 = {
-    storeId: 3,
-    storeName: 'Seattle Center',
-    minCust: 11,
-    maxCust: 38,
-    cookiesPerCust: 3.7,
-    hourlySales: []
-};
-
-var store4 = {
-    storeId: 4,
-    storeName: 'Capitol Hill',
-    minCust: 20,
-    maxCust: 38,
-    cookiesPerCust: 2.3,
-    hourlySales: []
-};
-
-var store5 = {
-    storeId: 5,
-    storeName: 'Alki',
-    minCust: 2,
-    maxCust: 16,
-    cookiesPerCust: 4.6,
-    hourlySales: []
-};
-
-function Store(name, minCust, maxCust, cookiesPerCust){
+function Store(name, minCust, maxCust, cookiesPerCust) {
     this.name = name;
     this.minCust = minCust;
     this.maxCust = maxCust;
     this.cookiesPerCust = cookiesPerCust;
     this.hourlySales = [];
-    Store.storeList.push(this.name);
-    this.projectSales();  
-  }
-  
-  Store.storeList = []; 
-  
-  Store.prototype.projectSales = function(){
+    Store.storeList.push(this);
     
-    this.message = 'this is a message';
+    this.projectSales = function () {
 
-    var min = this.minCust;
-    var max = this.maxCust;
-    var avg = this.cookiesPerCust;
-    
-    function customers(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-    };
-    
-    for (var i = 0; i < times.length; i++) {
-        var sales = Math.floor(customers(min, max) * avg);
-        this.hourlySales.push(sales);
+        var min = this.minCust;
+        var max = this.maxCust;
+        var avg = this.cookiesPerCust;
+
+        function customers(min, max) {
+            return Math.floor(Math.random() * (max - min) + min);
+        };
+
+        for (var i = 0; i < times.length; i++) {
+            var sales = Math.floor(customers(min, max) * avg);
+            this.hourlySales.push(sales);
+        };
     };
 
-  };
-  
-  var firstPike = new Store('1st and Pike', 23,  65, 2.3); 
-  var SeaTac = new Store('SeaTac Airport', 3,  24, 2.3); 
-  var seattleCenter = new Store('SeattleCenter', 11,  38, 3.7); 
-  var capitolHill = new Store('Capitol Hill', 20,  38, 2.3); 
-  var Alki = new Store('Alki', 2,  16, 4.6); 
-  
-  console.log(Store.storeList);
+    this.totalSales = function() {
+    
+        var dailyTotal = 0;
+        for (var x = 0; x < this.hourlySales.length; x++) {
+            dailyTotal += this.hourlySales[x];
+        };
+        this.dailyTotal = dailyTotal;
+    
+    };
 
+    this.projectSales();
+    this.totalSales();
+}
 
-//gonna wipe this out
-var stores = [store1, store2, store3, store4, store5];
+Store.storeList = [];
+
+var firstPike = new Store('1st and Pike', 23, 65, 2.3);
+var SeaTac = new Store('SeaTac Airport', 3, 24, 2.3);
+var seattleCenter = new Store('SeattleCenter', 11, 38, 3.7);
+var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
+var Alki = new Store('Alki', 2, 16, 4.6);
+
+console.log(Store.storeList);
 
 
 //refactor this so each store calls this and projects its own damn sales and totals it out
@@ -105,18 +64,18 @@ function projSales(store) {
     function customers(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
     };
-    
+
     for (var i = 0; i < times.length; i++) {
         var sales = Math.floor(customers(min, max) * avg);
         hourlySales.push(sales);
     };
 
     store.hourlySales = hourlySales;
-        
+
     function dailySales(hourlySales) {
         var dailySales = 0;
         for (var x = 0; x < hourlySales.length; x++) {
-             dailySales += hourlySales[x];  
+            dailySales += hourlySales[x];
         };
         return dailySales;
     };
@@ -143,20 +102,20 @@ function renderStores() {
     var salestable = document.getElementById('sales-table');
 
     for (var i = 0; i < stores.length; i++) {
-        
+
         var hourlySales = stores[i].hourlySales;
-        
+
         var storeUl = document.createElement('ul');
 
-        for (var x = 0; x < hourlySales.length; x++) {    
+        for (var x = 0; x < hourlySales.length; x++) {
             var li = document.createElement('li');
             li.textContent = (times[x] + ': ' + hourlySales[x]);
             storeUl.appendChild(li);
         };
 
         var totalLi = document.createElement('li');
-        totalLi.textContent = ('Total: ' + stores[i].dailySales); 
-        totalLi.setAttribute('class','total');
+        totalLi.textContent = ('Total: ' + stores[i].dailySales);
+        totalLi.setAttribute('class', 'total');
         storeUl.appendChild(totalLi);
 
         var storeh3 = document.createElement('h3');
@@ -174,8 +133,8 @@ function renderStores() {
 
 }
 
-initialize();
-renderStores();
+// initialize();
+// renderStores();
 
 // overall process
 // constructor function makes a store
