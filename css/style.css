@@ -110,7 +110,7 @@ li.total {
 
 table {
     margin: 32px 0;
-    font-size:14px;
+    font-size: 14px;
 }
 
 thead {
@@ -134,11 +134,25 @@ th:first-of-type {
     display: inline-block;
 }
 
-th {font-weight:400;}
+th {
+    font-weight: 400;
+}
 
-td:first-of-type, 
+td:first-of-type,
 td:last-of-type,
-tfoot td
- {
+tfoot td {
     font-weight: 600;
+}
+
+label {
+    display: inline-block;
+    width:300px;
+    text-align:right;
+    margin-top: 16px;
+    font-size:14px;
+    margin-bottom:8px;
+}
+
+input {
+    padding:8px;
 }

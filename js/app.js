@@ -56,7 +56,7 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
         };
         rowArray.push(dailyTotal);
 
-        return rowArray;
+        return rowArray; // modify this to instead return an object that's the table row
     };
 };
 
@@ -104,8 +104,6 @@ function renderHeader() {
     salesTable.appendChild(header);
 };
 
-// 
-
 function renderStores() {
     var tbody = document.createElement('tbody');
 
@@ -146,19 +144,33 @@ getHourlyTotals();
 renderStores();
 renderFooter();
 
-// function create Header
-// make a table > thead > tr > 16 th 
-// skip one th and fill with times
-// for each store
-// go to the table row based on the index of that store in the storeList
-// move to the second td in that table
-// fill that with the first entry from hourlySales and move to the next td
-// when you hit (number) spit out total 
+var form = document.getElementById("add-store");
+var table = document.getElementById("test");
+var button = document.getElementById("submit-btn")
 
-// overall process
-// constructor function makes a store
-//replace stores objects with a bunch built via constructor
-// store predicts its daily sales 
-// store predicts its total
-// store adds itself to the list of stores
-// function calls list of stores in the proto and each  
+// read input from the form into a js object
+var formData = function(event) {
+    event.preventDefault();
+    // console.log('formData!');
+    var name = event.target.name.value;
+    var minCust = event.target.mincust.value;
+    var maxCust = event.target.maxcust.value;
+    var cookiesPerCust = event.target.cookiesper.value; 
+    console.log(name + minCust + maxCust + cookiesPerCust);
+};
+
+// add an event listener to the button that triggers the function
+form.addEventListener('submit', formData); 
+
+
+// pass the input to the constructor function to make a new store 
+
+// modify the renderRow so it spits out a full table row vs. an array
+
+//  when form's submitted 
+
+// run the last store's renderRow() and append to table
+
+// (excessive ot make appendToTheTable a separate function?)
+
+// run  render footer again
