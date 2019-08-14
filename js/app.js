@@ -3,6 +3,7 @@
 // console.log('js loading');
 
 var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
+Store.storeList = [];
 
 function Store(name, minCust, maxCust, cookiesPerCust) {
     this.name = name;
@@ -41,7 +42,7 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
     this.projectSales();
     this.totalSales();
 
-    this.renderRow = function() {
+    this.renderRow = function () {
 
         var rowArray = [];
         var name = this.name;
@@ -55,19 +56,14 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
         rowArray.push(dailyTotal);
 
         return rowArray;
-    }
-}
-
-Store.storeList = [];
+    };
+};
 
 var firstPike = new Store('1st and Pike', 23, 65, 2.3);
 var SeaTac = new Store('SeaTac Airport', 3, 24, 2.3);
 var seattleCenter = new Store('SeattleCenter', 11, 38, 3.7);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var Alki = new Store('Alki', 2, 16, 4.6);
-
-console.log(Store.storeList);
-
 
 function renderStores() {
     var salesTable = document.getElementById('sales-table');
@@ -82,7 +78,22 @@ function renderStores() {
         };
         salesTable.appendChild(row);
     };
-}
+};
+
+var hourlyTotals = [];
+
+function getHourlyTotals() {
+    for (var i = 0; i < times.length; i++) {
+        var sum = 0;
+        for (var x = 0; x < Store.storeList.length; x++) {
+            sum += Store.storeList[x].hourlySales[i];
+        };
+        hourlyTotals.push(sum);
+    };
+};
+
+
+renderStores();
 
 // function create Header
 // make a table > thead > tr > 16 th 
@@ -92,9 +103,6 @@ function renderStores() {
 // move to the second td in that table
 // fill that with the first entry from hourlySales and move to the next td
 // when you hit (number) spit out total 
-
-
-renderStores();
 
 // overall process
 // constructor function makes a store
