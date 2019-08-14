@@ -53,45 +53,6 @@ var Alki = new Store('Alki', 2, 16, 4.6);
 console.log(Store.storeList);
 
 
-//refactor this so each store calls this and projects its own damn sales and totals it out
-function projSales(store) {
-
-    var min = store.minCust;
-    var max = store.maxCust;
-    var avg = store.cookiesPerCust;
-    var hourlySales = [];
-
-    function customers(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-    };
-
-    for (var i = 0; i < times.length; i++) {
-        var sales = Math.floor(customers(min, max) * avg);
-        hourlySales.push(sales);
-    };
-
-    store.hourlySales = hourlySales;
-
-    function dailySales(hourlySales) {
-        var dailySales = 0;
-        for (var x = 0; x < hourlySales.length; x++) {
-            dailySales += hourlySales[x];
-        };
-        return dailySales;
-    };
-
-    store.dailySales = dailySales(hourlySales);
-
-}
-
-// git rid of this altogether
-function initialize() {
-
-    for (var i = 0; i < stores.length; i++) {
-        projSales(stores[i]);
-    }
-};
-
 // function create Header
 
 // function create footer
