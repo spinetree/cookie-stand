@@ -39,26 +39,39 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
         this.dailyTotal = dailyTotal;
 
     };
-
-    this.projectSales();
-    this.totalSales();
-
+    
     this.renderRow = function () {
-
+        
         var rowArray = [];
         var name = this.name;
         var hourlySales = this.hourlySales;
         var dailyTotal = this.dailyTotal;
-
+        
         rowArray.unshift(name);
         for (var i = 0; i < hourlySales.length; i++) {
             rowArray.push(hourlySales[i]);
         };
         rowArray.push(dailyTotal);
-
-        return rowArray; // modify this to instead return an object that's the table row
+        
+        //turn rowArray into a table and stick it on salesTable's tbody
+        var tbody = document.getElementById('sales-table-body');
+        var row = document.createElement('tr');
+        
+        for (var x = 0; x < rowArray.length; x++) {
+            var td = document.createElement('td');
+            td.innerHTML = rowArray[x];
+            row.appendChild(td);
+        };
+        tbody.appendChild(row);
+        salesTable.appendChild(tbody);
     };
+
+    this.projectSales();
+    this.totalSales();
+    this.renderRow();
+
 };
+
 
 // compute just the hourly total for the footer
 
@@ -82,7 +95,7 @@ var seattleCenter = new Store('SeattleCenter', 11, 38, 3.7);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var Alki = new Store('Alki', 2, 16, 4.6);
 
- // render fooken header from times list (up top)
+// render fooken header from times list (up top)
 
 function renderHeader() {
     var header = document.createElement('thead');
@@ -104,21 +117,21 @@ function renderHeader() {
     salesTable.appendChild(header);
 };
 
-function renderStores() {
-    var tbody = document.createElement('tbody');
+// function renderStores() {
+//     var tbody = document.createElement('tbody');
 
-    for (var i = 0; i < Store.storeList.length; i++) {
-        var rowContent = Store.storeList[i].renderRow();
-        var row = document.createElement('tr');
-        for (var x = 0; x < rowContent.length; x++) {
-            var td = document.createElement('td');
-            td.innerHTML = rowContent[x];
-            row.appendChild(td);
-        };
-        tbody.appendChild(row);
-    };
-    salesTable.appendChild(tbody);
-};
+//     for (var i = 0; i < Store.storeList.length; i++) {
+//         var rowContent = Store.storeList[i].renderRow();
+//         var row = document.createElement('tr');
+//         for (var x = 0; x < rowContent.length; x++) {
+//             var td = document.createElement('td');
+//             td.innerHTML = rowContent[x];
+//             row.appendChild(td);
+//         };
+//         tbody.appendChild(row);
+//     };
+//     salesTable.appendChild(tbody);
+// };
 
 
 function renderFooter() {
@@ -142,31 +155,32 @@ function renderFooter() {
 
 renderHeader();
 getHourlyTotals();
-renderStores();
+// renderStores();
 renderFooter();
 
 var form = document.getElementById("add-store");
 var table = document.getElementById("test");
 var button = document.getElementById("submit-btn")
 
+
 // read input from the form into a js object
-var formData = function(event) {
-  
+var formData = function (event) {
+
     event.preventDefault();
     // console.log('formData!');
     var name = event.target.name.value;
     var minCust = event.target.mincust.value;
     var maxCust = event.target.maxcust.value;
-    var cookiesPerCust = event.target.cookiesper.value; 
+    var cookiesPerCust = event.target.cookiesper.value;
     // console.log(name + minCust + maxCust + cookiesPerCust);
 
-    var tempStore = new Store(name,minCust,maxCust,cookiesPerCust);
-    console.log(Store.storeList[Store.storeList.length-1]);
+    var tempStore = new Store(name, minCust, maxCust, cookiesPerCust);
+    console.log(Store.storeList[Store.storeList.length - 1]);
 
 };
 
 // add an event listener to the button that triggers the function
-form.addEventListener('submit', formData); 
+form.addEventListener('submit', formData);
 
 
 // pass the input to the constructor function to make a new store 
