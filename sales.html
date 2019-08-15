@@ -14,18 +14,12 @@
     </header>
 
     <main>
-        <section>
-            <table id="sales-table">
-                <tbody id="sales-table-body">                    
-                </tbody>
-            </table>
-        </section>
 
         <section>
             <h2>Add a store:</h2>
             <form id="add-store">
                 <fieldset>
-         
+
                     <label for="name">store name:</label>
                     <input type="text" name="name" placeholder="store name" minlength="1" required>
                     <label for="min-cust">minimum customers/hour</label>
@@ -41,6 +35,18 @@
                 <button type="submit" id="submit-btn">add store</button>
             </form>
         </section>
+
+        <section>
+            <table id="sales-table">
+                <thead id="sales-table-header">
+                </thead>
+                <tbody id="sales-table-body">
+                </tbody>
+                <tfoot id="sales-table-footer">
+                </tfoot>
+            </table>
+        </section>
+
 
     </main>
 
