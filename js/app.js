@@ -157,7 +157,6 @@ var formData = function (event) {
     var cookiesPerCust = event.target.cookiesper.value;
 
     var tempStore = new Store(name, minCust, maxCust, cookiesPerCust);
-    // console.log(Store.storeList[Store.storeList.length - 1]);
     updateFooter();
 };
 
