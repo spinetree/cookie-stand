@@ -5,8 +5,12 @@
 Store.storeList = [];
 var times = ['6 am', '7 am', '8 am', '9 am', '10 am', '11 am', '12 pm', '1 pm', '2 pm', '3 pm', '4 pm', '5 pm', '6 pm', '7 pm', '8 pm'];
 var salesTable = document.getElementById('sales-table');
+var salesHeader = document.getElementById('sales-table-header');
+var salesBody = document.getElementById('sales-table-body');
+var salesFooter = document.getElementById('sales-table-footer');
 
 function Store(name, minCust, maxCust, cookiesPerCust) {
+
     this.name = name;
     this.minCust = minCust;
     this.maxCust = maxCust;
@@ -37,11 +41,7 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
             dailyTotal += this.hourlySales[x];
         };
         this.dailyTotal = dailyTotal;
-
     };
-
-    this.projectSales();
-    this.totalSales();
 
     this.renderRow = function () {
 
@@ -56,13 +56,29 @@ function Store(name, minCust, maxCust, cookiesPerCust) {
         };
         rowArray.push(dailyTotal);
 
-        return rowArray;
+        //turn rowArray into a table and stick it on salesTable's tbody
+        var tbody = document.getElementById('sales-table-body');
+        var row = document.createElement('tr');
+
+        for (var x = 0; x < rowArray.length; x++) {
+            var td = document.createElement('td');
+            td.innerHTML = rowArray[x];
+            row.appendChild(td);
+        };
+        tbody.appendChild(row);
     };
+
+    this.projectSales();
+    this.totalSales();
+    this.renderRow();
+
 };
 
 var hourlyTotals = [];
 
 function getHourlyTotals() {
+
+    hourlyTotals = []; //zeroing this out so we can run this to update as well as render initially
     for (var i = 0; i < times.length; i++) {
         var sum = 0;
         for (var x = 0; x < Store.storeList.length; x++) {
@@ -70,7 +86,32 @@ function getHourlyTotals() {
         };
         hourlyTotals.push(sum);
     };
+
 };
+
+
+
+function renderHeader() {
+
+    var headerRow = document.createElement('tr');
+    //empty one
+    var headerCell = document.createElement('th');
+    headerRow.appendChild(headerCell);
+
+    for (var i = 0; i <= times.length; i++) {
+        var headerCell = document.createElement('th');
+        headerCell.innerText = times[i];
+        headerRow.appendChild(headerCell);
+    };
+
+    var lastHeaderCell = document.createElement('th');
+    headerCell.innerText = 'Daily Total';
+    headerRow.appendChild(headerCell);
+
+    salesHeader.appendChild(headerRow);
+
+};
+
 
 var firstPike = new Store('1st and Pike', 23, 65, 2.3);
 var SeaTac = new Store('SeaTac Airport', 3, 24, 2.3);
@@ -79,44 +120,10 @@ var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var Alki = new Store('Alki', 2, 16, 4.6);
 
 
-function renderHeader() {
-    var header = document.createElement('thead');
-    var headerRow = document.createElement('tr');
-    header.appendChild(headerRow);
-    var headerCell = document.createElement('th');
-    header.appendChild(headerCell);
+// var totalsRow;
+function renderFooter() {
 
-    for (var i = 0; i <= times.length; i++) {
-        var headerCell = document.createElement('th');
-        headerCell.innerText = times[i];
-        header.appendChild(headerCell);
-    };
-
-    var lastHeaderCell = document.createElement('th');
-    headerCell.innerText = 'Daily Total';
-    header.appendChild(headerCell);
-
-    salesTable.appendChild(header);
-};
-
-function renderStores() {
-    var tbody = document.createElement('tbody');
-
-    for (var i = 0; i < Store.storeList.length; i++) {
-        var rowContent = Store.storeList[i].renderRow();
-        var row = document.createElement('tr');
-        for (var x = 0; x < rowContent.length; x++) {
-            var td = document.createElement('td');
-            td.innerHTML = rowContent[x];
-            row.appendChild(td);
-        };
-        tbody.appendChild(row);
-    };
-    salesTable.appendChild(tbody);
-
-    var footer = document.createElement('tfoot');
     var totalsRow = document.createElement('tr');
-    //one blank td for the store names
     var dailyTotalLabel = document.createElement('td');
     dailyTotalLabel.innerText = 'Hourly Total';
     totalsRow.appendChild(dailyTotalLabel);
@@ -126,27 +133,40 @@ function renderStores() {
         totalCell.innerHTML = hourlyTotals[x];
         totalsRow.appendChild(totalCell);
     };
-    footer.appendChild(totalsRow);
-    salesTable.append(footer);
+    salesFooter.appendChild(totalsRow);
 };
 
+// initial render
 renderHeader();
 getHourlyTotals();
-renderStores();
+renderFooter();
 
-// function create Header
-// make a table > thead > tr > 16 th 
-// skip one th and fill with times
-// for each store
-// go to the table row based on the index of that store in the storeList
-// move to the second td in that table
-// fill that with the first entry from hourlySales and move to the next td
-// when you hit (number) spit out total 
 
-// overall process
-// constructor function makes a store
-//replace stores objects with a bunch built via constructor
-// store predicts its daily sales 
-// store predicts its total
-// store adds itself to the list of stores
-// function calls list of stores in the proto and each  
+// ---------- form for new store ---------- 
+var form = document.getElementById("add-store");
+var table = document.getElementById("test");
+var button = document.getElementById("submit-btn")
+
+
+var formData = function (event) {
+
+    event.preventDefault();
+    var name = event.target.name.value;
+    var minCust = event.target.mincust.value;
+    var maxCust = event.target.maxcust.value;
+    var cookiesPerCust = event.target.cookiesper.value;
+
+    var tempStore = new Store(name, minCust, maxCust, cookiesPerCust);
+    // console.log(Store.storeList[Store.storeList.length - 1]);
+    updateFooter();
+};
+
+function updateFooter() {
+
+    salesFooter.innerHTML = "";
+    getHourlyTotals();
+    renderFooter();
+
+};
+
+form.addEventListener('submit', formData);
