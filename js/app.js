@@ -120,6 +120,7 @@ function renderStores() {
     salesTable.appendChild(tbody);
 };
 
+
 function renderFooter() {
 
     var footer = document.createElement('tfoot');
@@ -150,13 +151,18 @@ var button = document.getElementById("submit-btn")
 
 // read input from the form into a js object
 var formData = function(event) {
+  
     event.preventDefault();
     // console.log('formData!');
     var name = event.target.name.value;
     var minCust = event.target.mincust.value;
     var maxCust = event.target.maxcust.value;
     var cookiesPerCust = event.target.cookiesper.value; 
-    console.log(name + minCust + maxCust + cookiesPerCust);
+    // console.log(name + minCust + maxCust + cookiesPerCust);
+
+    var tempStore = new Store(name,minCust,maxCust,cookiesPerCust);
+    console.log(Store.storeList[Store.storeList.length-1]);
+
 };
 
 // add an event listener to the button that triggers the function
