@@ -1,4 +1,5 @@
 /* typography */
+
 body {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 }
@@ -45,15 +46,6 @@ li {
     margin: 16px 0 16px 20px;
 }
 
-/* ul li:before {
-    font-family: "Font Awesome 5 Pro";
-    content: '\f06d';
-    margin: 0 5px 0 -14px;
-    color: #666;
-    font-size: 12px;
-    font-weight: 600;
-} */
-
 /* layout */
 
 body {
@@ -65,30 +57,31 @@ header {
     display: block;
     margin: 24px auto;
     padding: 16px;
-    width: 75%;
+    /* width: 75%;
     max-width: 960px;
-    min-width: 320px;
+    min-width: 320px; */
 }
 
 main {
     margin: 24px auto;
     padding: 16px;
-    width: 75%;
+    /* width: 75%;
     max-width: 960px;
-    min-width: 320px;
+    min-width: 320px; */
 }
 
 
 footer {
     display: block;
     background: #333;
-    padding: 24px;
+    padding: 16px;
     text-align: center;
     color: #888;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
+
 
 #sales-table {
     margin-top: 48px;

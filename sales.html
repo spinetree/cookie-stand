@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" type="text/css" href="css/grid.css">
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
@@ -21,18 +22,18 @@
         <h1>Sales</h1>
     </header>
 
-    <main>
+    <main class="container">
 
         <section>
             <h2>Add a store:</h2>
             <form id="add-store">
+                
                 <fieldset>
-
                     <label for="name">store name:</label>
                     <input type="text" name="name" placeholder="store name" minlength="1" required>
                     <label for="min-cust">minimum customers/hour</label>
                     <input type="text" name="mincust" placeholder="min" minlength="1" required>
-
+                    
                     <label for="max-cust">maximum customers/hour</label>
                     <input type="text" name="maxcust" placeholder="min" minlength="1" required>
 
