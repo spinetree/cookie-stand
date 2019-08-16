@@ -2,18 +2,20 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/grid.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/grid.css"> -->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville&display=swap" rel="stylesheet">
     <title>Salmon Cookies - Sales</title>
 </head>
 
 <body>
-   
+
     <nav>
         <ul>
             <li><a href="/index.html">Home</a></li>
+            <li><a href="/index.html#locations">Locations</a></li>
             <li><a href="/sales.html">Sales</a></li>
         </ul>
     </nav>
@@ -24,45 +26,54 @@
 
     <main class="container">
 
-        <section>
-            <h2>Add a store:</h2>
-            <form id="add-store">
-                
-                <fieldset>
-                    <label for="name">store name:</label>
-                    <input type="text" name="name" placeholder="store name" minlength="1" required>
-                    <label for="min-cust">minimum customers/hour</label>
-                    <input type="text" name="mincust" placeholder="min" minlength="1" required>
-                    
-                    <label for="max-cust">maximum customers/hour</label>
-                    <input type="text" name="maxcust" placeholder="min" minlength="1" required>
 
-                    <label for="cookies-per">avg cookies/customer</label>
-                    <input type="text" name="cookiesper" placeholder="min" minlength="1" required>
-                </fieldset>
+        <div class="row dark">
+            <article>
+                <h2>Add a store:</h2>
+                <form id="add-store">
 
-                <button type="submit" id="submit-btn">add store</button>
-            </form>
-        </section>
+                    <fieldset>
+                        <label for="name">store name:</label>
+                        <input type="text" name="name" placeholder="store name" minlength="1" required>
+                        <label for="min-cust">minimum customers/hour</label>
+                        <input type="text" name="mincust" placeholder="min" minlength="1" required>
 
-        <section>
-            <table id="sales-table">
-                <thead id="sales-table-header">
-                </thead>
-                <tbody id="sales-table-body">
-                </tbody>
-                <tfoot id="sales-table-footer">
-                </tfoot>
-            </table>
-        </section>
+                        <label for="max-cust">maximum customers/hour</label>
+                        <input type="text" name="maxcust" placeholder="min" minlength="1" required>
 
+                        <label for="cookies-per">avg cookies/customer</label>
+                        <input type="text" name="cookiesper" placeholder="min" minlength="1" required>
+                    </fieldset>
+
+                    <button type="submit" id="submit-btn">add store</button>
+                </form>
+            </article>
+        </div>
+
+        <div class="row">
+            <article>
+                <h2>Sales Totals</h2>
+                <table id="sales-table">
+                    <thead id="sales-table-header">
+                    </thead>
+                    <tbody id="sales-table-body">
+                    </tbody>
+                    <tfoot id="sales-table-footer">
+                    </tfoot>
+                </table>
+            </article>
+        </div>
 
     </main>
 
     <footer>
+        <section id="contact">
+            <h3>Contact Us</h3>
+            <address>Main office:<br />206.724.8271</address>
+            <a href="">Email</a>
+        </section>
         <p>&copy;2019 Steve Rocketkar</p>
         <script src="https://kit.fontawesome.com/581a82c3d2.js"></script>
         <script type="text/javascript" src="js/app.js"></script>
     </footer>
-
 </body>
