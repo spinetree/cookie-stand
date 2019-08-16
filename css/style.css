@@ -1,37 +1,43 @@
 /* typography */
+
 body {
     font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    line-height: 1.15;
+    letter-spacing: 0.15px;
 }
 
 h1,
 h2,
 h3 {
+    font-family: 'Libre Baskerville', serif;
     letter-spacing: .75px;
 }
 
 h1 {
-    font-size: 64px;
-    line-height: 45px;
+    font-size: 72px;
+    line-height: 96px;
     font-weight: 200;
+    margin-top: 48px;
 }
 
 h2 {
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 24px;
+    line-height: 36px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .75px;
 }
 
 h3 {
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 24px;
 
 }
 
 p {
     font-size: 16px;
-    line-height: 20px;
+    line-height: 1.5;
     margin-top: 16px;
 }
 
@@ -45,67 +51,137 @@ li {
     margin: 16px 0 16px 20px;
 }
 
-/* ul li:before {
-    font-family: "Font Awesome 5 Pro";
-    content: '\f06d';
-    margin: 0 5px 0 -14px;
-    color: #666;
-    font-size: 12px;
-    font-weight: 600;
-} */
+address {
+    margin: 16px 0 0;
+}
+
+
+
+/* Nav */
+
+nav {
+    background: #666;
+    text-transform: uppercase;
+    position: fixed;
+    display: block;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+nav ul {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+nav li {
+    flex-basis: 100px;
+    flex-grow: 1;
+    margin: 16px;
+}
+
+nav li a {
+    display: block;
+    padding: 8px 16px;
+    background: #444;
+    color: #fefefe;
+    text-decoration: none;
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+    text-align: center;
+}
+
+nav li a:hover {
+    background: #333;
+}
 
 /* layout */
 
 body {
-    background: #ccc;
+    background: #fefefe;
+    border: 16px solid #666;
 }
+
+
+main {
+    margin: 48px auto;
+}
+
+.row {
+    padding: 24px 0;
+    display: flex;
+    flex-direction: row;
+}
+
+.dark {
+    background: #dedede;
+}
+
+article {
+    flex: 1 1;
+    max-width: 960px;
+    min-width: 320px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+aside {
+    width: 50%;
+    margin: 48px auto;
+    border-top: 2px solid #333;
+    padding-top: 24px;
+    text-align: center;
+}
+
+/* header  */
 
 header {
     text-align: center;
-    display: block;
-    margin: 24px auto;
-    padding: 16px;
-    width: 75%;
-    max-width: 960px;
-    min-width: 320px;
+    margin: 48px auto 24px;
 }
 
-main {
-    margin: 24px auto;
-    padding: 16px;
-    width: 75%;
-    max-width: 960px;
-    min-width: 320px;
+
+img.hero {
+    margin-top: 10vh;
+    width: 480px;
 }
+
+img.photo {
+    border: 10px solid #fefefe;
+    box-shadow: 1px 1px 4px #ccc;
+    margin: 16px;
+}
+
+img#family {
+    width: 50%;
+    float: right;
+    margin: 0 24px;
+}
+
+#contact {
+    margin: 16px auto;
+    text-align: center;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 16px;
+    width: 320px;
+}
+
 
 
 footer {
     display: block;
     background: #333;
-    padding: 24px;
+    padding: 16px;
     text-align: center;
-    color: #888;
-    position: fixed;
-    bottom: 0;
+    color: #dedede;
     width: 100%;
 }
 
-#sales-table {
-    margin-top: 48px;
-}
 
-#sales-table>h3 {
-    text-align: center;
-}
-
-#sales-table>div {
-    padding: 0 20px;
-    float: left;
-}
-
-li.total {
-    font-weight: 600;
-    list-style: none;
+footer a {
+    text-decoration: none;
+    font-weight: 400;
+    color: #fefefe;
 }
 
 table {
@@ -125,7 +201,7 @@ tbody {
 
 th,
 td {
-    padding: 16px;
+    padding: 12px;
     text-align: center;
 }
 
@@ -146,13 +222,33 @@ tfoot td {
 
 label {
     display: inline-block;
-    width:300px;
-    text-align:right;
+    width: 300px;
+    text-align: right;
     margin-top: 16px;
-    font-size:14px;
-    margin-bottom:8px;
+    font-size: 14px;
+    margin-bottom: 8px;
 }
 
 input {
-    padding:8px;
+    padding: 8px;
+}
+
+/* Sales-table */
+
+#sales-table {
+    margin-top: 48px;
+}
+
+#sales-table>h3 {
+    text-align: center;
+}
+
+#sales-table>div {
+    padding: 0 20px;
+    float: left;
+}
+
+li.total {
+    font-weight: 600;
+    list-style: none;
 }
