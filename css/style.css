@@ -26,13 +26,21 @@ h2 {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: .75px;
+    margin-top: 24px;
 }
 
 h3 {
     font-size: 18px;
     line-height: 24px;
-    margin-top: 24px;
+    margin-top: 16px;
+    color: #ff4444;
 
+}
+
+h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-top: 16px;
 }
 
 p {
@@ -108,13 +116,14 @@ main {
 }
 
 .row {
-    padding: 24px 0;
+    padding: 32px 0;
     display: flex;
     flex-direction: row;
 }
 
 .dark {
-    background: #dedede;
+    /* background: #dedede; */
+    background: #ffeeee;
 }
 
 article {
@@ -251,4 +260,15 @@ input {
 li.total {
     font-weight: 600;
     list-style: none;
+}
+
+#locations h4 {
+    padding-top: 16px;
+    border-top: 1px dotted #ccc;
+    margin-top: 16px;
+}
+
+#locations span {
+    font-style: italic;
+    margin-left: 16px;
 }
